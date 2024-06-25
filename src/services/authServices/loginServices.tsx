@@ -1,19 +1,12 @@
 "use client"
-import PocketBase from 'pocketbase'
+import { AuthCreds } from '@/model/auth.model'
+import { pb } from '@/utils/pocketbase'
 
-const pb = new PocketBase(process.env.PB_URL)
+export default async function loginServices(Credentials:AuthCreds) {
 
-interface AuthCreds{
-    identity:string,
-    password:string
-}
-
-
-const loginServices = async (Credentials:AuthCreds) => {
-    console.log(Credentials)
     const authData = await pb.collection('guffadis').authWithPassword(Credentials.identity, Credentials.password);
     console.log(authData)
-
+    if(authData.token){
+        return true
+    }
 }
-
-export default loginServices
