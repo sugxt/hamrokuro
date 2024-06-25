@@ -7,7 +7,7 @@ export default async function loginServices(Credentials:AuthCreds) {
 
     const authData = await pb.collection(userConstants.users).authWithPassword(Credentials.identity, Credentials.password);
     console.log(authData)
-    if(authData.token){
+    if(authData.token){ 
         return true
     }
 }
