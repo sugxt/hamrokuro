@@ -1,9 +1,11 @@
 "use client";
 import { SignUpCreds } from "@/model/auth.model";
 import signUpServices from "@/services/authServices/signUpServices";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export default function SignUp() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -11,7 +13,10 @@ export default function SignUp() {
   } = useForm<SignUpCreds>();
 
   async function onSubmit(data: SignUpCreds) {
-    signUpServices(data);
+    const isSuccess = await signUpServices(data);
+    if (isSuccess) {
+        router.push('/auth/login')
+    }
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
