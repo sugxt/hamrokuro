@@ -1,32 +1,34 @@
-"use client"
+"use client";
 import loginServices from "@/services/authServices/loginServices";
 import guffList from "@/services/guffServices/guffList";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { FormEvent, useState } from "react";
 
+type inputs = {
+    identity:string,
+    password:string,
+}
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<inputs>();
 
+  async function onSubmit(data:inputs){
+    loginServices(data)
+  }
 
-    async function handleSubmit(e:FormEvent<HTMLFormElement>){
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const Credentials = {
-            username:formData.get("username"),
-            password:formData.get("password")
-        }
-        loginServices(Credentials)
-        console.log(Credentials)
-    }
-
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                <input type="text" placeholder="username or email" name="username"/>
-                <input type="password" placeholder="password" name="password" />
-                <button type="submit">login</button>
-            </form>
-            </div>
-        </main>
-    );
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+          <input type="text" placeholder="username or email" {...register("identity")} />
+          <input type="password" placeholder="password" {...register("password")} />
+          <button type="submit">login</button>
+        </form>
+      </div>
+    </main>
+  );
 }
