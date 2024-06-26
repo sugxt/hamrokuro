@@ -1,16 +1,17 @@
 "use client";
 import { SignUpCreds } from "@/model/auth.model";
 import { userConstants } from "@/utils/db.constants";
-import { pb } from "@/utils/pocketbase";
+import { pb, pbErrorMessage } from "@/utils/pocketbase";
 
-const signUpServices = async (signUpData: SignUpCreds) => {
+const signUpServices = async (signUpData: SignUpCreds):Promise<boolean> => {
   console.log(signUpData);
   try {
     const record = await pb.collection(userConstants.users).create(signUpData);
     console.log(record);
-    if (record) return true;
+    return !!record;
   } catch (error) {
-    console.log(error);
+    console.log(pbErrorMessage(error).response);
+    return false;
   }
 };
 
