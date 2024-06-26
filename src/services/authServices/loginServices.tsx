@@ -10,9 +10,10 @@ export default async function loginServices(
     const authData = await pb
       .collection(userConstants.users)
       .authWithPassword(Credentials.identity, Credentials.password);
+    console.log(authData);
     return !!authData;
   } catch (error) {
-    console.log("Message:",pbErrorMessage(error).message);
+    console.log("Message:", pbErrorMessage(error).message);
     return false;
   }
 }

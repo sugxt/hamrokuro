@@ -1,11 +1,15 @@
 "use client";
+import ButtonLoader from "@/components/loaders/ButtonLoader";
 import { SignUpCreds } from "@/model/auth.model";
 import signUpServices from "@/services/authServices/signUpServices";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SignUp() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -13,14 +17,17 @@ export default function SignUp() {
   } = useForm<SignUpCreds>();
 
   async function onSubmit(data: SignUpCreds) {
+    setIsLoading(true);
     const isSuccess = await signUpServices(data);
     if (isSuccess) {
-        router.push('/auth/login')
+      router.push("/auth/login");
+      setIsLoading(false);
     }
+    setIsLoading(false);
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
           placeholder="username"
@@ -52,7 +59,7 @@ export default function SignUp() {
           required
           {...register("name")}
         />
-        <button type="submit">sign up</button>
+        <ButtonLoader isLoading={isLoading} content="Sign Up" />
       </form>
     </main>
   );
