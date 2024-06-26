@@ -1,14 +1,18 @@
-"use client"
-import { AuthCreds } from '@/model/auth.model'
-import { userConstants } from '@/utils/db.constants';
-import { pb } from '@/utils/pocketbase'
+"use client";
+import { AuthCreds } from "@/model/auth.model";
+import { userConstants } from "@/utils/db.constants";
+import { pb, pbErrorMessage } from "@/utils/pocketbase";
 
-export default async function loginServices(Credentials:AuthCreds) {
-
-    const authData = await pb.collection(userConstants.users).authWithPassword(Credentials.identity, Credentials.password);
-    console.log(authData)
-    if(authData.token){ 
-        return true
-        // abcd
-    }
+export default async function loginServices(
+  Credentials: AuthCreds
+): Promise<boolean> {
+  try {
+    const authData = await pb
+      .collection(userConstants.users)
+      .authWithPassword(Credentials.identity, Credentials.password);
+    return !!authData;
+  } catch (error) {
+    console.log("Message:",pbErrorMessage(error).message);
+    return false;
+  }
 }
