@@ -10,3 +10,8 @@ export type SignUpCreds = {
     passwordConfirm:string,
     name:string,
 }
+
+export type AuthResponse = {
+    isSuccess:boolean,
+    message:string
+}

@@ -2,7 +2,7 @@
 
 import loginServices from "@/services/authServices/loginServices";
 import { useForm } from "react-hook-form";
-import { AuthCreds } from "@/model/auth.model";
+import { AuthCreds, AuthResponse } from "@/model/auth.model";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ButtonLoader from "@/components/loaders/ButtonLoader";
@@ -18,11 +18,13 @@ export default function Login() {
 
   async function onSubmit(data: AuthCreds) {
     setIsLoading(true);
-    const isSuccess = await loginServices(data);
-    if (isSuccess) {
+    const resData: AuthResponse = await loginServices(data);
+    if (resData.isSuccess) {
       router.push("/");
+    } else {
+      setIsLoading(false);
+      console.log("Error", resData.message);
     }
-    setIsLoading(false);
   }
 
   return (
