@@ -1,27 +1,17 @@
 "use client";
-import { AuthData } from "@/model/auth.model";
-import { RecordModel } from "pocketbase";
+import { AuthModel, RecordModel } from "pocketbase";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { pb } from "@/utils/pocketbase";
 
 interface AuthState {
-  authData: RecordModel | null;
-  setAuthData: (data: RecordModel) => void;
+  authData: AuthModel;
   clearAuthData: () => void;
 }
 
-const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      authData: null,
-      setAuthData: (data) => set({ authData: data }),
-      clearAuthData: () => set({ authData: null }),
-    }),
-    {
-      name: "auth-storage",
-      storage: createJSONStorage(() => localStorage),
-    }
-  )
-);
+const useAuthStore = create<AuthState>()((set) => ({
+  authData: pb.authStore.model,
+  clearAuthData: () => set({ authData: null }),
+}));
 
 export default useAuthStore;

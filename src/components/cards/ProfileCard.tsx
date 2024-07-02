@@ -1,10 +1,10 @@
 "use client";
 import useAuthStore from "@/store/useAuthStore";
-import { RecordModel } from "pocketbase";
+import { AuthModel, RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
 
 const ProfileCard = () => {
-  const [localAuthData, setLocalAuthData] = useState<RecordModel | null>(null);
+  const [localAuthData, setLocalAuthData] = useState<AuthModel>(null);
   const authData = useAuthStore((state) => state.authData);
   useEffect(() => {
     setLocalAuthData(authData);

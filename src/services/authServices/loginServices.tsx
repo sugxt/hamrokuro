@@ -7,13 +7,11 @@ import { pb, pbErrorMessage } from "@/utils/pocketbase";
 export default async function loginServices(
   Credentials: AuthCreds
 ): Promise<AuthResponse> {
-  const setAuthData = useAuthStore.getState().setAuthData;
   try {
     const authData = await pb
       .collection(userConstants.users)
       .authWithPassword(Credentials.identity, Credentials.password);
     console.log(authData);
-    setAuthData(authData.record)
     return { isSuccess: true, message: authData.record.created };
   } catch (error) {
     console.log(pbErrorMessage(error).data);
