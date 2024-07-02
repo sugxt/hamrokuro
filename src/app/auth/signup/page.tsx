@@ -1,5 +1,5 @@
 "use client";
-import ButtonLoader from "@/components/loaders/ButtonLoader";
+import ButtonLoader from "@/components/buttons/ButtonLoader";
 import { AuthResponse, SignUpCreds } from "@/model/auth.model";
 import signUpServices from "@/services/authServices/signUpServices";
 import { useRouter } from "next/navigation";
@@ -18,15 +18,14 @@ export default function SignUp() {
 
   async function onSubmit(data: SignUpCreds) {
     setIsLoading(true);
-    const response:AuthResponse = await signUpServices(data);
+    const response: AuthResponse = await signUpServices(data);
     if (response.isSuccess) {
       router.push("/auth/login");
       setIsLoading(false);
     } else {
       setIsLoading(false);
-      console.log("Error",response.message)
+      console.log("Error", response.message);
     }
-    
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
