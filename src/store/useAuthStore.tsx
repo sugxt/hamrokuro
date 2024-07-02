@@ -1,7 +1,6 @@
 "use client";
-import { AuthModel, RecordModel } from "pocketbase";
+import { AuthModel } from "pocketbase";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 import { pb } from "@/utils/pocketbase";
 
 interface AuthState {

@@ -1,6 +1,5 @@
 "use client";
 import { AuthCreds, AuthResponse } from "@/model/auth.model";
-import useAuthStore from "@/store/useAuthStore";
 import { userConstants } from "@/utils/db.constants";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
 
