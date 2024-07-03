@@ -1,15 +1,24 @@
 "use client";
-import { PostResponse, postDataType } from "@/model/posts.model";
+import { PostResponse } from "@/model/posts.model";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
 
 export default async function postCreate(
-  postData: postDataType
+  postData: string
 ): Promise<PostResponse> {
-  try {
-    const record = await pb.collection("guffs").create(postData);
-    console.log(record);
-    return { isSuccess: true, message: "Guff Created" };
-  } catch (error) {
-    return { isSuccess: false, message: pbErrorMessage(error).message };
+  if (pb.authStore.model) {
+    const data = {
+      guff: postData,
+      guffadi: pb.authStore.model.id,
+    };
+    try {
+      const record = await pb.collection("guffs").create(data);
+      console.log(record);
+      return { isSuccess: true, message: "Guff Created" };
+      
+    } catch (error) {
+      return { isSuccess: false, message: pbErrorMessage(error).message };
+    }
+  } else {
+    return { isSuccess: false, message: "User not Authenticated" };
   }
 }

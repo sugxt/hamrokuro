@@ -15,12 +15,10 @@ const ProfileBlock = () => {
     console.log(postData);
   }, [setPostData]);
   return (
-    <div className="w-2/5 h-screen flex flex-col justify-center items-center pt-10 border">
-      <div className="flex flex-col gap-6 w-full justify-center items-center">
+      <div className="flex flex-col w-full gap-6 justify-center items-center">
         {postData &&
           postData.map((post) => <PostCard key={post.id} data={post} />)}
       </div>
-    </div>
   );
 };
 

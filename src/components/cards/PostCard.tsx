@@ -1,7 +1,5 @@
-import { postConstants } from "@/utils/db.constants";
 import { RecordModel } from "pocketbase";
 import React from "react";
-import CreatePostCard from "@/components/cards/CreatePostCard";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
   return (
@@ -20,7 +18,6 @@ const PostCard = ({ data }: { data: RecordModel }) => {
       <p className="font-bold text-sm text-cyan-800">
         {data.liked_by ? data.liked_by.length : 0} likes
       </p>
-      <CreatePostCard/>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProfileBlock from "@/components/blocks/ProfileBlock";
+import CreatePostCard from "@/components/cards/CreatePostCard";
 
 export const metadata: Metadata = {
   title: "HamroKuro | Home",
@@ -7,9 +8,12 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return(
-    <div className="flex flex-row items-center justify-center">
-      <ProfileBlock/>
+  return (
+    <div className="w-full flex h-full justify-center items-center">
+      <div className="flex flex-col w-1/3 items-center justify-center">
+        <CreatePostCard />
+        <ProfileBlock />
+      </div>
     </div>
-  )
+  );
 }
