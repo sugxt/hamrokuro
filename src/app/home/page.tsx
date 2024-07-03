@@ -1,7 +1,7 @@
 "use client";
+import PostCard from "@/components/cards/PostCard";
 import postList from "@/services/guffServices/postList";
 import usePostStore from "@/store/usePostStore";
-import { RecordModel } from "pocketbase";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -16,8 +16,13 @@ export default function Page() {
   }, [setPostData]);
 
   return (
-    <div>
-      {postData && postData.map((post) => <li key={post.id}>{post.guff}</li>)}
+    <div className="w-full flex flex-col justify-center items-center pt-10">
+      <div className="flex flex-col gap-6 w-full justify-center items-center">
+        {postData &&
+          postData.map((post) => (
+            <PostCard key={post.id} data={post}/>
+          ))}
+      </div>
     </div>
   );
 }
