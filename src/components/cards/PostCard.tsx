@@ -8,9 +8,14 @@ const PostCard = ({ data }: { data: RecordModel }) => {
         <div className="image-block w-10 h-10 rounded-full bg-slate-400"></div>
         <div className="title flex flex-col gap-0">
           <h1 className="font-semibold">{data.expand?.guffadi.name}</h1>
-          <p className="font-normal text-sm text-neutral-700">
-            @{data.expand?.guffadi.username}
-          </p>
+          <div className="flex flex-row gap-1">
+            <p className="font-normal text-sm text-neutral-700">
+              @{data.expand?.guffadi.username}
+            </p>
+            {data.expand?.guffadi.verified && (
+              <p className="verified status text-blue-600 text-sm font-bold">✓</p>
+            )}
+          </div>
         </div>
       </div>
       <hr className="w-full border-neutral-300" />

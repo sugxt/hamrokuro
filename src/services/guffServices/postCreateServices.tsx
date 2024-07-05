@@ -1,8 +1,9 @@
 "use client";
 import { PostResponse } from "@/model/posts.model";
+import { postConstants } from "@/utils/db.constants";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
 
-export default async function postCreate(
+export default async function postCreateServices(
   postData: string
 ): Promise<PostResponse> {
   if (pb.authStore.model) {
@@ -11,9 +12,9 @@ export default async function postCreate(
       guffadi: pb.authStore.model.id,
     };
     try {
-      const record = await pb.collection("guffs").create(data);
+      const record = await pb.collection(postConstants.posts).create(data);
       console.log(record);
-      return { isSuccess: true, message: "Guff Created" };
+      return { isSuccess: true, message: `${postConstants.posts} Created` };
       
     } catch (error) {
       return { isSuccess: false, message: pbErrorMessage(error).message };
