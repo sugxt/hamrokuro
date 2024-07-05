@@ -13,15 +13,8 @@ const Navbar = () => {
     console.log("Fire");
   }, [authData]);
   return (
-    <div>
-      {localAuthData ? (
-        <h1>
-          {localAuthData.username}
-          {localAuthData.collectionName}
-        </h1>
-      ) : (
-        <p>Loading...</p> // Implement Loader
-      )}
+    <div className="fixed top-0 left-0 right-0 w-full p-2 bg-white">
+      NAVBAR
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import { PostResponse } from "@/model/posts.model";
 import { postConstants } from "@/utils/db.constants";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
+import postListServices from "./postListServices";
 
 export default async function postCreateServices(
   postData: string
@@ -14,8 +15,8 @@ export default async function postCreateServices(
     try {
       const record = await pb.collection(postConstants.posts).create(data);
       console.log(record);
+      postListServices()
       return { isSuccess: true, message: `${postConstants.posts} Created` };
-      
     } catch (error) {
       return { isSuccess: false, message: pbErrorMessage(error).message };
     }

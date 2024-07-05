@@ -26,7 +26,8 @@ const CreatePostCard = () => {
   }
 
   return (
-    <div className="p-8 w-3/4 bg-neutral-200 rounded-lg ">
+    <div className="flex flex-col p-6 w-3/4 bg-neutral-100 rounded-lg gap-2">
+      <h1 className="text-lg text-cyan-800">Guff hanne thau</h1>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <input
         className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
