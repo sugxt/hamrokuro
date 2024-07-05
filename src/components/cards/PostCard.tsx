@@ -1,5 +1,7 @@
 import { RecordModel } from "pocketbase";
 import React from "react";
+import { FaHeart } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
   return (
@@ -7,22 +9,30 @@ const PostCard = ({ data }: { data: RecordModel }) => {
       <div className="user-details-block flex flex-row gap-2">
         <div className="image-block w-10 h-10 rounded-full bg-slate-400"></div>
         <div className="title flex flex-col gap-0">
-          <h1 className="font-semibold">{data.expand?.guffadi.name}</h1>
           <div className="flex flex-row gap-1">
-            <p className="font-normal text-sm text-neutral-700">
-              @{data.expand?.guffadi.username}
-            </p>
+            <h1 className="font-semibold">{data.expand?.guffadi.name}</h1>
             {data.expand?.guffadi.verified && (
-              <p className="verified status text-blue-600 text-sm font-bold">✓</p>
+              <p className="verified status text-cyan-800 text-sm font-black">
+                ✓
+              </p>
             )}
           </div>
+          <p className="font-normal text-sm text-neutral-700">
+            @{data.expand?.guffadi.username}
+          </p>
         </div>
       </div>
       <hr className="w-full border-neutral-300" />
       <h1 className="text-wrap">{data.guff}</h1>
       <p className="font-bold text-sm text-cyan-800">
-        {data.liked_by ? data.liked_by.length : 0} likes
+        {data.liked_by ? data.liked_by.length : 0} Ohoo's
       </p>
+      <div className="like-grp flex flex-row gap-1">
+        <div className="liked-state">
+          <FaHeart color="#155E75" />
+        </div>
+        <FaBookmark color="#155E75" />
+      </div>
     </div>
   );
 };
