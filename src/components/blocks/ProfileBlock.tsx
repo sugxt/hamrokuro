@@ -1,24 +1,23 @@
-"use client"
-import postList from "@/services/guffServices/postList";
+"use client";
 import usePostStore from "@/store/usePostStore";
 import React, { useEffect } from "react";
-import PostCard from "@/components/cards/PostCard"
+import PostCard from "@/components/cards/PostCard";
+import postListServices from "@/services/guffServices/postListServices";
 
 const ProfileBlock = () => {
-  const postData = usePostStore((state) => state.postData);
-  const setPostData = usePostStore((state) => state.setPostData);
+  const { postData, setPostData } = usePostStore();
   useEffect(() => {
     const fetchData = async () => {
-      await postList();
+      await postListServices();
     };
     fetchData();
     console.log(postData);
   }, [setPostData]);
   return (
-      <div className="flex flex-col w-full gap-6 justify-center items-center">
-        {postData &&
-          postData.map((post) => <PostCard key={post.id} data={post} />)}
-      </div>
+    <div className="flex flex-col w-full gap-6 justify-center items-center">
+      {postData &&
+        postData.map((post) => <PostCard key={post.id} data={post} />)}
+    </div>
   );
 };
 

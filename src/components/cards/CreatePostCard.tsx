@@ -1,9 +1,9 @@
 "use client";
 import { PostResponse, postDataType } from "@/model/posts.model";
-import postCreate from "@/services/guffServices/postCreate";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonLoader from "@/components/buttons/ButtonLoader";
+import postCreateServices from "@/services/guffServices/postCreateServices";
 
 const CreatePostCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,7 +15,7 @@ const CreatePostCard = () => {
 
   async function onSubmit(data: postDataType) {
     setIsLoading(true);
-    const response: PostResponse = await postCreate(data.guff);
+    const response: PostResponse = await postCreateServices(data.guff);
     if (response.isSuccess) {
       setIsLoading(false);
       console.log(response.message);
@@ -26,7 +26,7 @@ const CreatePostCard = () => {
   }
 
   return (
-    <div className="p-4 w-3/4">
+    <div className="p-8 w-3/4 bg-neutral-200 rounded-lg ">
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <input
         className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
