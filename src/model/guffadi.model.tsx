@@ -5,3 +5,9 @@ export interface GuffadiResponse {
     data:RecordModel | null;
     message:string
 }
+
+export interface GuffadiGuffType {
+    isSuccess:boolean;
+    data:RecordModel[] | null;
+    message:string;
+}

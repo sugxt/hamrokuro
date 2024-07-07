@@ -1,5 +1,5 @@
 "use client";
-import getGuffadiServices from "@/services/guffadiServices/getGuffadiServices";
+import GuffadiServices from "@/services/guffadiServices/GuffadiServices";
 import { RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
 
@@ -8,7 +8,7 @@ const UserProfileBlock = ({ id }: { id: string }) => {
   const [userData, setUserData] = useState<RecordModel | null>(null); // Initialize with null
 
   const fetchData = async () => {
-    const data = await getGuffadiServices(id);
+    const data = await GuffadiServices(id);
     if (data.isSuccess) {
       setUserData(data.data);
       console.log(data.message); // Success Message Handling Here
@@ -23,11 +23,11 @@ const UserProfileBlock = ({ id }: { id: string }) => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Render loading state while fetching data
+    return <div>Loading...</div>; // Loading State handling here
   }
 
   if (!userData) {
-    return <div>No User Data</div>; // Render this if there is no user data
+    return <div>No User Data</div>; // Data not found state handling here
   }
 
   return (

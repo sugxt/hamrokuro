@@ -2,7 +2,7 @@ import { GuffadiResponse } from "@/model/guffadi.model";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
 import { RecordModel } from "pocketbase";
 
-export default async function getGuffadiServices(
+export default async function GuffadiServices(
   id: string
 ): Promise<GuffadiResponse> {
   try {
