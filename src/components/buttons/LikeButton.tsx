@@ -12,7 +12,6 @@ const LikeButton = ({
   user: string;
   isLiked: boolean;
 }) => {
-  console.log(post, user, isLiked);
   const { isLikeLoading } = useLikeLoading();
   if (isLiked) {
     return (

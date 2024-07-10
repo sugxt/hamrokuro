@@ -8,7 +8,8 @@ export default async function GuffadiGuffServices(
   try {
     const records = await pb.collection("guffs").getFullList({
       filter: `guffadi.username="${id}"`,
-      expand:"guffadi"
+      expand: "guffadi",
+      sort: "-created",
     });
     console.log(records);
     return {

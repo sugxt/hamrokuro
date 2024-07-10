@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonLoader from "@/components/buttons/ButtonLoader";
 import postCreateServices from "@/services/guffServices/postCreateServices";
-import usePostStore from "@/store/usePostStore";
+import { usePostStore } from "@/store/usePostStore";
 
 const CreatePostCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
