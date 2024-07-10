@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="w-full flex h-full justify-center items-center p-4">
-      <div className="flex flex-col w-1/3 items-center gap-6 justify-center pt-8">
+    <div className="pt-16 w-full bg-neutral-100 flex h-auto justify-center items-center p-4">
+      <div className="flex flex-col w-1/3 items-center gap-6 justify-center">
         <CreatePostCard />
         <ProfileBlock />
       </div>
