@@ -3,7 +3,6 @@ import { pb } from "@/utils/pocketbase";
 import { useRouter } from "next/navigation";
 import { RecordModel } from "pocketbase";
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { GiButterflyFlower } from "react-icons/gi";
 import LikeButton from "@/components/buttons/LikeButton";

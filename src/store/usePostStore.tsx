@@ -9,7 +9,7 @@ interface PostState {
   fetchPostData: () => Promise<void>;
 }
 
-const usePostStore = create<PostState>((set) => ({
+export const usePostStore = create<PostState>((set) => ({
   postData: null,
   setPostData: (data) => set({ postData: data }),
   fetchPostData: async () => {
@@ -22,4 +22,3 @@ const usePostStore = create<PostState>((set) => ({
   },
 }));
 
-export default usePostStore;

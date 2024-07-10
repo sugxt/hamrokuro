@@ -1,12 +1,14 @@
 "use client";
 import PostCard from "@/components/cards/PostCard";
 import GuffadiGuffServices from "@/services/guffadiServices/GuffadiGuffServices";
+import { useRefetch } from "@/store/useLoadingStore";
 import { RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
 
 const GuffadiGuffs = ({ id }: { id: string }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<RecordModel[] | null>(null); // Initialize as empty array
+  const { refetch } = useRefetch();
 
   const fetchData = async () => {
     try {
@@ -26,7 +28,7 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [id, refetch]);
 
   if (isLoading) {
     return <div>Loading...</div>;
