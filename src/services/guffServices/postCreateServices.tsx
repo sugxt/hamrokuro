@@ -1,4 +1,3 @@
-"use client";
 import { PostResponse } from "@/model/posts.model";
 import { postConstants } from "@/utils/db.constants";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
