@@ -6,20 +6,19 @@ import React, { useState } from "react";
 import { MdVerified } from "react-icons/md";
 import { GiButterflyFlower } from "react-icons/gi";
 import LikeButton from "@/components/buttons/LikeButton";
+import Link from "next/link";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
   const currentUser = pb.authStore.model;
   const router = useRouter();
   if (data.expand) {
     return (
-      <div className="flex flex-col h-auto w-96 bg-neutral-100 rounded-xl gap-2 p-4">
+      <div className="flex flex-col h-auto w-96 bg-white rounded-xl gap-2 p-4">
         <div className="user-details-block flex flex-row gap-2">
           <div className="image-block w-10 h-10 rounded-full bg-cyan-900"></div>
           <div className="title flex flex-col gap-0">
-            <button
-              onClick={() => {
-                router.push(`/guffadi/${data.expand?.guffadi.username}`);
-              }}
+            <Link
+              href={`/guffadi/${data.expand?.guffadi.username}`}
               className="flex flex-row gap-0.5 items-center"
             >
               <h1 className="font-semibold">{data.expand.guffadi.name}</h1>
@@ -29,7 +28,7 @@ const PostCard = ({ data }: { data: RecordModel }) => {
               {data.expand.guffadi.isBloom && (
                 <GiButterflyFlower className="text-pink-600 text-base" />
               )}
-            </button>
+            </Link>
             <p className="font-normal text-sm text-neutral-700">
               @{data.expand.guffadi.username}
             </p>
