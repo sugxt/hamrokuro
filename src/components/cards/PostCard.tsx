@@ -1,4 +1,6 @@
 "use client";
+import postLikeServices from "@/services/guffServices/postLikeServices";
+import { pb } from "@/utils/pocketbase";
 import { useRouter } from "next/navigation";
 import { RecordModel } from "pocketbase";
 import React, { useState } from "react";
@@ -6,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
+  const currentUser = pb.authStore.model;
   const router = useRouter();
   if (data.expand) {
     return (
@@ -32,13 +35,20 @@ const PostCard = ({ data }: { data: RecordModel }) => {
         <hr className="w-full border-neutral-300" />
         <h1 className="text-wrap">{data.guff}</h1>
         <div className="activity flex flex-row gap-1 items-center">
-          <div className="like-grp flex flex-row gap-1 items-center justify-center">
+          <div className="like-grp w-full flex flex-row gap-1 items-center justify-center">
             <div className="liked-state">
               <FaHeart className="text-cyan-800" />
             </div>
             <h1 className="font-base text-cyan-800">
               {data.liked_by ? data.liked_by.length : 0}
             </h1>
+            <button
+              onClick={() => {
+                postLikeServices(data.id, currentUser?.id);
+              }}
+            >
+              Like
+            </button>
           </div>
         </div>
       </div>

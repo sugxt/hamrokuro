@@ -34,7 +34,7 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <h1 className="text-2xl font-semibold text-cyan-800">Your Guffs</h1>
+      <h1 className="text-2xl font-semibold text-cyan-800">Guff Haru</h1>
       {data && data.map((post) => <PostCard key={post.id} data={post} />)}
     </div>
   );
