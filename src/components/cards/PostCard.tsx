@@ -1,11 +1,12 @@
 "use client";
-import postLikeServices from "@/services/guffServices/postLikeServices";
 import { pb } from "@/utils/pocketbase";
 import { useRouter } from "next/navigation";
 import { RecordModel } from "pocketbase";
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
+import { GiButterflyFlower } from "react-icons/gi";
+import LikeButton from "@/components/buttons/LikeButton";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
   const currentUser = pb.authStore.model;
@@ -26,6 +27,9 @@ const PostCard = ({ data }: { data: RecordModel }) => {
               {data.expand.guffadi.verified && (
                 <MdVerified className="text-cyan-800 text-base" />
               )}
+              {data.expand.guffadi.isBloom && (
+                <GiButterflyFlower className="text-pink-600 text-base" />
+              )}
             </button>
             <p className="font-normal text-sm text-neutral-700">
               @{data.expand.guffadi.username}
@@ -35,20 +39,18 @@ const PostCard = ({ data }: { data: RecordModel }) => {
         <hr className="w-full border-neutral-300" />
         <h1 className="text-wrap">{data.guff}</h1>
         <div className="activity flex flex-row gap-1 items-center">
-          <div className="like-grp w-full flex flex-row gap-1 items-center justify-center">
-            <div className="liked-state">
-              <FaHeart className="text-cyan-800" />
+          <div className="like-grp flex flex-col gap-2 items-center justify-center">
+            <div className="w-full flex flex-row items-center gap-1 liked-state">
+              <h1 className="text-sm font-semibold text-cyan-800">
+                {data.liked_by ? data.liked_by.length : 0}
+              </h1>
+              <h1 className="text-sm text-cyan-700 font-normal">Likes</h1>
             </div>
-            <h1 className="font-base text-cyan-800">
-              {data.liked_by ? data.liked_by.length : 0}
-            </h1>
-            <button
-              onClick={() => {
-                postLikeServices(data.id, currentUser?.id);
-              }}
-            >
-              Like
-            </button>
+            <LikeButton
+              post={data.id}
+              user={currentUser?.id}
+              isLiked={data.isLiked}
+            />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 import GuffadiServices from "@/services/guffadiServices/GuffadiServices";
 import { RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
+import { GiButterflyFlower } from "react-icons/gi";
 import { MdVerified } from "react-icons/md";
 
 const UserProfileBlock = ({ id }: { id: string }) => {
@@ -35,7 +36,12 @@ const UserProfileBlock = ({ id }: { id: string }) => {
     <div className="profile-box flex flex-col items-start justify-start p-10 bg-neutral-100 rounded-xl w-96">
       <div className="name-status flex flex-row gap-1 items-center">
         <h1 className="text-lg font-semibold text-cyan-700">{userData.name}</h1>
-        {userData.verified && <MdVerified className="text-cyan-800 text-base" />}
+        {userData.verified && (
+          <MdVerified className="text-cyan-800 text-base" />
+        )}
+        {userData.isBloom && (
+          <GiButterflyFlower className="text-pink-600 text-base" />
+        )}
       </div>
       <p className="text-neutral-600 text-sm">@{userData.username}</p>
     </div>

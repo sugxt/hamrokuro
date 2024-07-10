@@ -9,7 +9,7 @@ const ButtonLoader: React.FC<ButtonProps> = ({ isLoading, content }) => {
   return (
     <button
       type="submit"
-      className="flex items-center justify-center w-full border-2 bg-black rounded-lg text-white text-sm p-2"
+      className="flex items-center justify-center w-full border-2 bg-cyan-800 rounded-lg text-white text-sm p-2"
       disabled={isLoading} // Optionally disable button while loading
     >
       {isLoading ? (
