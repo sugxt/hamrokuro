@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonLoader from "@/components/buttons/ButtonLoader";
 import postCreateServices from "@/services/guffServices/postCreateServices";
+import usePostStore from "@/store/usePostStore";
 
 const CreatePostCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { fetchPostData } = usePostStore();
   const {
     register,
     handleSubmit,
@@ -20,17 +22,18 @@ const CreatePostCard = () => {
       setIsLoading(false);
       console.log(response.message);
     } else {
-      setIsLoading(false)
+      setIsLoading(false);
       console.log(response.message);
     }
+    fetchPostData();
   }
 
   return (
-    <div className="flex flex-col p-6 w-3/4 bg-neutral-100 rounded-lg gap-2">
-      <h1 className="text-lg text-cyan-800">Guff hanne thau</h1>
+    <div className="flex flex-col p-6 w-96 bg-neutral-100 rounded-lg gap-2">
+      <h1 className="text-lg text-cyan-900">Guff hanne thau</h1>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <input
-        className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
+          className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
           placeholder="Type your guff"
           {...register("guff")}
         />
