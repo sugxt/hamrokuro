@@ -21,3 +21,18 @@ export const useRefetch = create<RefetchStore>((set) => ({
   refetch: 0,
   setRefetch: (by) => set((state) => ({ refetch: state.refetch + by })),
 }));
+
+// interface RefetchState {
+//   homeRefetch: number;
+//   profileRefetch: number;
+//   setRefetch: (key: "homeRefetch" | "profileRefetch") => void;
+// }
+
+// export const useRefetch = create<RefetchState>((set) => ({
+//   homeRefetch: 0,
+//   profileRefetch: 0,
+//   setRefetch: (key) =>
+//     set((state) => ({
+//       [key]: state[key] + 1,
+//     })),
+// }));

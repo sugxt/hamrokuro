@@ -8,7 +8,13 @@ export type PostResponse = {
   message: string;
 };
 export type PostData = {
-    isSuccess:boolean;
-    message:string;
-    data:RecordModel | null
-}
+  isSuccess: boolean;
+  message: string;
+  data: RecordModel | null;
+};
+
+export type MultiPostData = {
+  isSuccess: boolean;
+  message: string;
+  data: RecordModel[] | null;
+};

@@ -29,15 +29,16 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
   useEffect(() => {
     fetchData();
   }, [id, refetch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="flex flex-col items-center gap-6">
-      <h1 className="text-2xl font-semibold text-cyan-800">Guff Haru</h1>
-      {data && data.map((post) => <PostCard key={post.id} data={post} />)}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div className="gap-8 flex flex-col items-center">
+          <h1 className="text-2xl font-semibold text-cyan-800">Guff Haru</h1>
+          {data && data.map((post) => <PostCard key={post.id} data={post} />)}
+        </div>
+      )}
     </div>
   );
 };

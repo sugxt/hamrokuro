@@ -13,6 +13,7 @@ const CreatePostCard = () => {
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm<postDataType>();
 
   async function onSubmit(data: postDataType) {
@@ -20,6 +21,7 @@ const CreatePostCard = () => {
     const response: PostResponse = await postCreateServices(data.guff);
     if (response.isSuccess) {
       setIsLoading(false);
+      resetField("guff");
       console.log(response.message);
     } else {
       setIsLoading(false);
