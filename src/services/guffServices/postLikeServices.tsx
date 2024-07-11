@@ -15,8 +15,8 @@ export async function postLikeServices(
       "liked_by+": `${guffadi_id}`,
     });
     console.log(record);
-    setRefetch(1);
-    await fetchPostData();
+    // setRefetch(1);
+    // await fetchPostData();
     setIsLikeLoading(false);
     return { isSuccess: true, data: record, message: "Liked" };
   } catch (error) {

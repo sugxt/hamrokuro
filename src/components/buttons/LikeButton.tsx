@@ -7,10 +7,12 @@ const LikeButton = ({
   post,
   user,
   isLiked,
+  onClick,
 }: {
   post: string;
   user: string;
   isLiked: boolean;
+  onClick: () => void;
 }) => {
   const { isLikeLoading } = useLikeLoading();
   return (
@@ -30,6 +32,7 @@ const LikeButton = ({
           ) : (
             <button
               onClick={() => {
+                onClick()
                 postLikeServices(post, user);
               }}
               className="items-center w-16 h-8 bg-cyan-700 rounded-lg"
