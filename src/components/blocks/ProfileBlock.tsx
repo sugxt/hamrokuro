@@ -2,7 +2,6 @@
 import { usePostStore } from "@/store/usePostStore";
 import React, { useEffect, useState } from "react";
 import PostCard from "@/components/cards/PostCard";
-import { useRefetch } from "@/store/useLoadingStore";
 
 const ProfileBlock = () => {
   const { postData, fetchPostData } = usePostStore();
