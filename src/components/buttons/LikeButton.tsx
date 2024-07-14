@@ -1,5 +1,5 @@
 "use client";
-import { postLikeQueue } from "@/services/postLikeServices/guffLikeServices";
+import { postLikeQueue } from "@/services/QueueServices/likeQueueServices";
 import React from "react";
 const LikeButton = ({
   post,

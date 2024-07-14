@@ -21,6 +21,7 @@ export default function Login() {
     const resData: AuthResponse = await loginServices(data);
     if (resData.isSuccess) {
       router.push("/home");
+      console.log("Success",resData.message)
     } else {
       setIsLoading(false);
       console.log("Error", resData.message);

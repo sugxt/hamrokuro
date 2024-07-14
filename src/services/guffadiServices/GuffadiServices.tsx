@@ -10,10 +10,8 @@ export default async function GuffadiServices(
     const record: RecordModel = await pb
       .collection("guffadis")
       .getFirstListItem(`username ~ "${id}"`);
-    console.log(record);
     return { isSuccess: true, message: "User Fetched", data: record };
   } catch (error) {
-    console.log(pbErrorMessage(error).message);
     return {
       isSuccess: false,
       message: pbErrorMessage(error).message,

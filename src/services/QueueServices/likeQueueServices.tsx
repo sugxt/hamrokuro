@@ -21,7 +21,6 @@ export async function postLikeQueue(post_id: string, user_id: string) {
     return post;
   });
 
-  console.log(curr);
   postUpdate(updatedPosts);
 
   const response = await postLikeServices(post_id, user_id);
