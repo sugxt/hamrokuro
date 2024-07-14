@@ -5,7 +5,7 @@ import postListServices from "@/services/guffServices/postListServices";
 
 interface PostState {
   postData: RecordModel[] | null;
-  setPostData: (data: RecordModel[]) => void;
+  setPostData: (data: RecordModel[] | undefined) => void;
   fetchPostData: () => Promise<void>;
 }
 
