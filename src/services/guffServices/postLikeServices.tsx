@@ -10,7 +10,6 @@ export async function postLikeServices(
     const record = await pb.collection("guffs").update(guff_id, {
       "liked_by+": `${guffadi_id}`,
     });
-    console.log(record);
     reFetcher(1);
     return { isSuccess: true, data: record, message: "Liked" };
   } catch (error) {

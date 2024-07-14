@@ -7,6 +7,5 @@ export default async function postListServices(): Promise<RecordModel[]> {
     expand: "guffadi,liked_by",
     sort: "-created",
   });
-  console.log(records);
   return records;
 }

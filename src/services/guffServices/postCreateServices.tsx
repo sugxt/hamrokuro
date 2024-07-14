@@ -12,8 +12,7 @@ export default async function postCreateServices(
       guffadi: pb.authStore.model.id,
     };
     try {
-      const record = await pb.collection(postConstants.posts).create(data);
-      console.log(record);
+      await pb.collection(postConstants.posts).create(data);
       postListServices()
       return { isSuccess: true, message: `${postConstants.posts} Created` };
     } catch (error) {

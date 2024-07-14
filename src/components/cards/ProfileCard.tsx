@@ -8,7 +8,6 @@ const ProfileCard = () => {
   const authData = useAuthStore((state) => state.authData);
   useEffect(() => {
     setLocalAuthData(authData);
-    console.log("Fire");
   }, [authData]);
   return (
     <div>

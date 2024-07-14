@@ -1,20 +1,17 @@
 "use client";
 import PostCard from "@/components/cards/PostCard";
 import GuffadiGuffServices from "@/services/guffadiServices/GuffadiGuffServices";
-import { useRefetch } from "@/store/useLoadingStore";
-import { RecordModel } from "pocketbase";
+import { usePostStore } from "@/store/usePostStore";
 import React, { useEffect, useState } from "react";
 
 const GuffadiGuffs = ({ id }: { id: string }) => {
+  const { postData, fetchPostData } = usePostStore();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<RecordModel[] | null>(null); // Initialize as empty array
-  const { refetch } = useRefetch();
 
   const fetchData = async () => {
     try {
       const response = await GuffadiGuffServices(id);
       if (response.isSuccess) {
-        setData(response.data);
         console.log(response.message); // Success Message Handling Here
       } else {
         console.log(response.message); // Error Message Handling Here
@@ -28,7 +25,7 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
 
   useEffect(() => {
     fetchData();
-  }, [id, refetch]);
+  }, [id]);
   return (
     <div className="flex flex-col items-center gap-6">
       {isLoading ? (
@@ -36,7 +33,8 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
       ) : (
         <div className="gap-8 flex flex-col items-center">
           <h1 className="text-2xl font-semibold text-cyan-800">Guff Haru</h1>
-          {data && data.map((post) => <PostCard key={post.id} data={post} />)}
+          {postData &&
+            postData.map((post) => <PostCard key={post.id} data={post} />)}
         </div>
       )}
     </div>

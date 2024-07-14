@@ -14,12 +14,10 @@ const poppins = Poppins({
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const [localAuthData, setLocalAuthData] = useState<AuthModel>(null);
   const authData = useAuthStore((state) => state.authData);
   useEffect(() => {
     setLocalAuthData(authData);
-    console.log("Fire");
   }, [authData]);
   return (
     <div
