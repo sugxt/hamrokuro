@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="w-full flex min-h-screen flex-col items-center justify-center p-24">
       <div>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
           <input

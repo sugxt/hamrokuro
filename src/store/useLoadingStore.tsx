@@ -17,10 +17,6 @@ export const useLikeLoading = create<LikeLoadingStore>((set) => ({
   },
 }));
 
-export const useRefetch = create<RefetchStore>((set) => ({
-  refetch: 0,
-  setRefetch: (by) => set((state) => ({ refetch: state.refetch + by })),
-}));
 
 // interface RefetchState {
 //   homeRefetch: number;
