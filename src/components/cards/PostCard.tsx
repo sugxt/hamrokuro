@@ -6,8 +6,12 @@ import { MdVerified } from "react-icons/md";
 import { GiButterflyFlower } from "react-icons/gi";
 import LikeButton from "@/components/buttons/LikeButton";
 import Link from "next/link";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const PostCard = ({ data }: { data: RecordModel }) => {
+  dayjs.extend(relativeTime);
+  const formattedDate = dayjs().to(dayjs(data.created));
   const currentUser = pb.authStore.model;
   return (
     <div>
@@ -15,22 +19,27 @@ const PostCard = ({ data }: { data: RecordModel }) => {
         <div className="flex flex-col h-auto w-96 bg-white rounded-xl gap-2 p-4">
           <div className="user-details-block flex flex-row gap-2">
             <div className="image-block w-10 h-10 rounded-full bg-cyan-900"></div>
-            <div className="title flex flex-col gap-0">
-              <Link
-                href={`/guffadi/${data.expand?.guffadi.username}`}
-                className="flex flex-row gap-0.5 items-center"
-              >
-                <h1 className="font-semibold">{data.expand.guffadi.name}</h1>
-                {data.expand.guffadi.verified && (
-                  <MdVerified className="text-cyan-800 text-base" />
-                )}
-                {data.expand.guffadi.isBloom && (
-                  <GiButterflyFlower className="text-pink-600 text-base" />
-                )}
-              </Link>
-              <p className="font-normal text-sm text-neutral-700">
-                @{data.expand.guffadi.username}
-              </p>
+            <div className="date-user w-full flex flex-row justify-between">
+              <div className="title flex flex-col justify-between gap-0">
+                <Link
+                  href={`/guffadi/${data.expand.guffadi.username}`}
+                  className="flex flex-row gap-0.5 items-center"
+                >
+                  <h1 className="font-semibold">{data.expand.guffadi.name}</h1>
+                  {data.expand.guffadi.verified && (
+                    <MdVerified className="text-cyan-800 text-base" />
+                  )}
+                  {data.expand.guffadi.isBloom && (
+                    <GiButterflyFlower className="text-pink-600 text-base" />
+                  )}
+                </Link>
+                <p className="font-normal text-sm text-neutral-700">
+                  @{data.expand.guffadi.username}
+                </p>
+              </div>
+              <div className="date-block text-xs text-neutral-500">
+                {formattedDate}
+              </div>
             </div>
           </div>
           <hr className="w-full border-neutral-300" />

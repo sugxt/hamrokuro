@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navigation/Navbar";
+import Sidebar from "@/components/navigation/Sidebar";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -21,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-neutral-100`}>
-        <Navbar />
+      <body
+        className={`${poppins.className} flex flex-row justify-between items-start bg-neutral-100`}
+      >
+        <Sidebar />
         {children}
       </body>
     </html>
