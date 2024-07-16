@@ -23,15 +23,6 @@ const UserProfileBlock = ({ id }: { id: string }) => {
   useEffect(() => {
     fetchData();
   }, [id]);
-
-  if (isLoading) {
-    return <div>Loading...</div>; // Loading State handling here
-  }
-
-  if (!userData) {
-    return <div>No User Data</div>; // Data not found state handling here
-  }
-
   return (
     <div>
       {isLoading ? (
