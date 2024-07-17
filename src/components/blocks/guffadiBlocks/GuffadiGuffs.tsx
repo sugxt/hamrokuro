@@ -34,7 +34,7 @@ const GuffadiGuffs = ({ id }: { id: string }) => {
         <div className="gap-8 flex flex-col items-center">
           <h1 className="text-2xl font-semibold text-cyan-800">Guff Haru</h1>
           {postData &&
-            postData.map((post) => <PostCard key={post.id} data={post} />)}
+            postData.map((post) => <PostCard isSingle={false} key={post.id} data={post} />)}
         </div>
       )}
     </div>

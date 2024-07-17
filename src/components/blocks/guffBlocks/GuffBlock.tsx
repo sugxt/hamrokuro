@@ -1,4 +1,5 @@
 "use client";
+import PostCard from "@/components/cards/PostCard";
 import postViewServices from "@/services/guffServices/postViewServices";
 import { RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
@@ -22,26 +23,17 @@ const GuffBlock = ({ guff_id }: { guff_id: string }) => {
     fetchData();
   }, [guff_id]);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data) {
+    return <div>No Data Found</div>;
+  }
+
   return (
-    <div className="guff-main">
-      {isLoading ? (
-        // Loading State
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {!data ? (
-            // No Data State
-            <div>No Data Found</div>
-          ) : (
-            <div className="">
-              {data.expand && (
-                // Data Expansion with Guffadi Details
-                <div className="username">{data.expand.guffadi.name}</div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+    <div className="flex flex-col items-center justify-center w-full">
+      <PostCard isSingle={true} data={data} />
     </div>
   );
 };
