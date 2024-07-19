@@ -9,6 +9,7 @@ export default async function commentViewServices(
     const records: RecordModel[] = await pb.collection("gaffs").getFullList({
       filter: `gaff_for ="${id}"`,
       sort: "-created",
+      expand: "gaff_by"
     });
     return { isSuccess: true, data: records, message: "Fetch Gaff Successful" };
   } catch (error) {
