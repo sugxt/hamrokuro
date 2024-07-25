@@ -2,11 +2,9 @@
 import { pb } from "@/utils/pocketbase";
 import { RecordModel } from "pocketbase";
 import React from "react";
-import { MdVerified } from "react-icons/md";
-import { GiButterflyFlower } from "react-icons/gi";
 import LikeButton from "@/components/buttons/LikeButton";
-import Link from "next/link";
 import { dateFormatter } from "@/utils/dateformatting";
+import UserDetails from "../blocks/guffadiBlocks/userDetails";
 
 const PostCard = ({
   data,
@@ -25,25 +23,7 @@ const PostCard = ({
             <div className="user-details-block flex flex-row gap-2">
               <div className="image-block w-10 h-10 rounded-full bg-cyan-900 overflow-auto"></div>
               <div className="date-user w-full flex flex-row justify-between">
-                <div className="title flex flex-col justify-between gap-0">
-                  <Link
-                    href={`/guffadi/${data.expand.guffadi.username}`}
-                    className="flex flex-row gap-0.5 items-center"
-                  >
-                    <h1 className="font-semibold">
-                      {data.expand.guffadi.name}
-                    </h1>
-                    {data.expand.guffadi.verified && (
-                      <MdVerified className="text-cyan-800 text-base" />
-                    )}
-                    {data.expand.guffadi.isBloom && (
-                      <GiButterflyFlower className="text-pink-600 text-base" />
-                    )}
-                  </Link>
-                  <p className="font-normal text-sm text-neutral-700">
-                    @{data.expand.guffadi.username}
-                  </p>
-                </div>
+                <UserDetails UserDetails={data.expand.guffadi} />
                 <div className="date-block text-xs text-neutral-500">
                   {formattedDate}
                 </div>
@@ -82,23 +62,7 @@ const PostCard = ({
           <div className="user-details-block flex flex-row gap-2">
             <div className="image-block w-10 h-10 rounded-full bg-cyan-900 overflow-auto"></div>
             <div className="date-user w-full flex flex-row justify-between">
-              <div className="title flex flex-col justify-between gap-0">
-                <Link
-                  href={`/guffadi/${data.expand.guffadi.username}`}
-                  className="flex flex-row gap-0.5 items-center"
-                >
-                  <h1 className="font-semibold">{data.expand.guffadi.name}</h1>
-                  {data.expand.guffadi.verified && (
-                    <MdVerified className="text-cyan-800 text-base" />
-                  )}
-                  {data.expand.guffadi.isBloom && (
-                    <GiButterflyFlower className="text-pink-600 text-base" />
-                  )}
-                </Link>
-                <p className="font-normal text-sm text-neutral-700">
-                  @{data.expand.guffadi.username}
-                </p>
-              </div>
+              <UserDetails UserDetails={data.expand.guffadi} />
               <div className="date-block text-xs text-neutral-500">
                 {formattedDate}
               </div>

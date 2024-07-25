@@ -21,7 +21,9 @@ const ProfileBlock = () => {
       ) : (
         <div className="flex flex-col w-full gap-6 justify-center items-center">
           {postData &&
-            postData.map((post) => <PostCard key={post.id} data={post} />)}
+            postData.map((post) => (
+              <PostCard isSingle={false} key={post.id} data={post} />
+            ))}
         </div>
       )}
     </div>

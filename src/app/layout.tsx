@@ -24,7 +24,6 @@ export default function RootLayout({
       <body
         className={`${poppins.className} flex flex-row justify-between items-start bg-neutral-100`}
       >
-        <Sidebar />
         {children}
       </body>
     </html>
