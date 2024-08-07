@@ -31,7 +31,7 @@ const CreatePostCard = () => {
   }
 
   return (
-    <div className="flex flex-col p-6 w-96 bg-white rounded-lg gap-2">
+    <div className="flex flex-col p-6 sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-lg gap-2">
       <h1 className="text-lg text-cyan-900">Guff hanne thau</h1>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <input

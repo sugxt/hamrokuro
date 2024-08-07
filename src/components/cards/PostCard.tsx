@@ -21,7 +21,7 @@ const PostCard = ({
     return (
       <div>
         {data.expand ? (
-          <div className="flex flex-col h-auto w-[600px] bg-white rounded-xl gap-2 p-4">
+          <div className="flex flex-col h-auto sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-xl gap-2 p-4">
             <div className="user-details-block flex flex-row gap-2">
               <div className="image-block w-10 h-10 rounded-full bg-cyan-900 overflow-auto"></div>
               <div className="date-user w-full flex flex-row justify-between">
@@ -62,7 +62,7 @@ const PostCard = ({
   return (
     <div>
       {data.expand ? (
-        <div className="flex flex-col h-auto w-96 bg-white rounded-xl gap-2 p-4">
+        <div className="flex flex-col h-auto sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-xl  gap-2 p-4">
           <div className="user-details-block flex flex-row gap-2">
             <div className="image-block w-10 h-10 rounded-full bg-cyan-900 overflow-auto"></div>
             <div className="date-user w-full flex flex-row justify-between">
