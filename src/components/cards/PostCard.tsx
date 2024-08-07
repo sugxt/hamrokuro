@@ -3,8 +3,9 @@ import { pb } from "@/utils/pocketbase";
 import { RecordModel } from "pocketbase";
 import React from "react";
 import LikeButton from "@/components/buttons/LikeButton";
-import { dateFormatter } from "@/utils/dateformatting";
-import UserDetails from "../blocks/guffadiBlocks/userDetails";
+import { dateFormatter, dateFormatterDetailed } from "@/utils/dateformatting";
+import UserDetails from "../blocks/guffadiBlocks/UserDetails";
+import Link from "next/link";
 
 const PostCard = ({
   data,
@@ -13,6 +14,7 @@ const PostCard = ({
   data: RecordModel;
   isSingle: boolean;
 }) => {
+  const formattedDateSingle = dateFormatterDetailed(data.created);
   const formattedDate = dateFormatter(data.created);
   const currentUser = pb.authStore.model;
   if (isSingle) {
@@ -25,13 +27,15 @@ const PostCard = ({
               <div className="date-user w-full flex flex-row justify-between">
                 <UserDetails UserDetails={data.expand.guffadi} />
                 <div className="date-block text-xs text-neutral-500">
-                  {formattedDate}
+                  {formattedDateSingle}
                 </div>
               </div>
             </div>
             <hr className="w-full border-neutral-300" />
             <div className="guff-content text-wrap">
-              <h1>{data.guff}</h1>
+              <Link href={`/guff/${data.id}`}>
+                <h1>{data.guff}</h1>
+              </Link>
             </div>
             <div className="activity flex flex-row gap-1 items-center">
               <div className="like-grp flex flex-col gap-2 items-center justify-center">
@@ -70,7 +74,9 @@ const PostCard = ({
           </div>
           <hr className="w-full border-neutral-300" />
           <div className="flex text-wrap break-all">
-            <h1>{data.guff}</h1>
+            <Link href={`/guff/${data.id}`}>
+              <h1>{data.guff}</h1>
+            </Link>
           </div>
           <div className="activity flex flex-row gap-1 items-center">
             <div className="like-grp flex flex-col gap-2 items-center justify-center">

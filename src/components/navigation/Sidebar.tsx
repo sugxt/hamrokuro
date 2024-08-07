@@ -15,15 +15,15 @@ const poppins = Poppins({
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className={`${poppins.className} fixed left-20 top-10`}>
-      <div className="title-links gap-6 flex flex-col items-center p-8 w-96 h-auto bg-white rounded-2xl">
+    <div className={`${poppins.className} left-0 top-0 sticky h-screen max-sm:hidden max-md:hidden`}>
+      <div className="title-links gap-6 flex flex-col items-center p-8 w-96 h-screen bg-white">
         <h1 className="text-3xl font-black text-cyan-600">HAMROKURO</h1>
         <div className="links flex flex-col gap-4">
           <Link
             className={`link ${
               pathname == "/home"
                 ? "flex flex-row gap-2 items-center text-cyan-700 font-bold text-lg"
-                : "flex flex-row gap-2 items-center font-medium text-black text-lg"
+                : "flex flex-row gap-2 items-center font-medium text-black text-lg hover:text-cyan-900"
             }`}
             href={"/home"}
           >
@@ -34,7 +34,7 @@ const Sidebar = () => {
             className={`link ${
               pathname == "/profile"
                 ? "flex flex-row gap-2 items-center text-cyan-700 font-bold text-lg"
-                : "flex flex-row gap-2 items-center font-medium text-black text-lg"
+                : "flex flex-row gap-2 items-center font-medium text-black text-lg hover:text-cyan-900"
             }`}
             href={"/profile"}
           >
