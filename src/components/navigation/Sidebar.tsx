@@ -16,7 +16,7 @@ const Sidebar = () => {
   const pathname = usePathname();
   return (
     <div className={`${poppins.className} left-0 top-0 sticky h-screen max-sm:hidden max-md:hidden`}>
-      <div className="title-links gap-6 flex flex-col items-center p-8 w-96 h-screen bg-white">
+      <div className="title-links gap-6 flex flex-col items-center p-8 w-96 h-full bg-white">
         <h1 className="text-3xl font-black text-cyan-600">HAMROKURO</h1>
         <div className="links flex flex-col gap-4">
           <Link
