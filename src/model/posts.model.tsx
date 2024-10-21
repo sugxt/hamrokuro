@@ -18,3 +18,7 @@ export type MultiPostData = {
   message: string;
   data: RecordModel[] | null;
 };
+
+export type postCommentType = {
+  gaff: string;
+};

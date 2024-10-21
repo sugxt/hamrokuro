@@ -2,6 +2,7 @@
 import { RecordModel } from "pocketbase";
 import { create } from "zustand";
 import postListServices from "@/services/guffServices/postListServices";
+import commentViewServices from "@/services/gaffServices/commentViewServices";
 
 interface PostState {
   postData: RecordModel[] | null;
@@ -22,3 +23,29 @@ export const usePostStore = create<PostState>((set) => ({
   },
 }));
 
+interface CommentState {
+  isCommentLoading: boolean;
+  postData: RecordModel[] | null;
+  setPostData: (data: RecordModel[] | undefined) => void;
+  fetchPostData: (guff_id: string) => Promise<void>;
+  setIsCommentLoading: (state: boolean) => void;
+}
+
+export const useCommentStore = create<CommentState>((set) => ({
+  isCommentLoading: false,
+  postData: null,
+  setPostData: (data) => set({ postData: data }),
+  fetchPostData: async (guff_id) => {
+    set({ isCommentLoading: true });
+    try {
+      const data = await commentViewServices(guff_id);
+      set({ postData: data.data });
+      set({ isCommentLoading: false });
+    } catch (error) {
+      console.log("Something went wrong");
+    }
+  },
+  setIsCommentLoading: (state) => {
+    set({ isCommentLoading: state });
+  },
+}));

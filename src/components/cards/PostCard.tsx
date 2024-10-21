@@ -32,7 +32,7 @@ const PostCard = ({
               </div>
             </div>
             <hr className="w-full border-neutral-300" />
-            <div className="guff-content text-wrap">
+            <div className="guff-content text-wrap break-all">
               <Link href={`/guff/${data.id}`}>
                 <h1>{data.guff}</h1>
               </Link>

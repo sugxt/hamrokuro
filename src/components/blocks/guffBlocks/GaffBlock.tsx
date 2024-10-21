@@ -1,29 +1,23 @@
-"use client"
+"use client";
 import GaffCard from "@/components/cards/GaffCard";
-import commentViewServices from "@/services/gaffServices/commentViewServices";
-import { RecordModel } from "pocketbase";
+import { useCommentStore } from "@/store/usePostStore";
 import React, { useEffect, useState } from "react";
 
 const GaffBlock = ({ gaff_id }: { gaff_id: string }) => {
-  const [gaffs, setGaffs] = useState<RecordModel[] | null>(null);
-
-  const fetchData = async () => {
-    const response = await commentViewServices(gaff_id);
-    if (response.isSuccess) {
-      console.log(response.message);
-      setGaffs(response.data);
-    } else {
-      console.log("Failed to Fetch Data", response.message);
-    }
-  };
-
+  const [isLoading, setIsLoading] = useState(false); // yet to add isLoading State here
+  const { postData, fetchPostData } = useCommentStore();
   useEffect(() => {
+    const fetchData = async () => {
+      await fetchPostData(gaff_id);
+      setIsLoading(false);
+    };
     fetchData();
-  }, [gaff_id]);
+  }, [fetchPostData]);
 
   return (
     <div className="flex flex-col gap-4">
-      {gaffs && gaffs.map((gaff) => <GaffCard key={gaff.id} data={gaff} />)}
+      {postData &&
+        postData.map((gaff) => <GaffCard key={gaff.id} data={gaff} />)}
     </div>
   );
 };
