@@ -32,7 +32,7 @@ const UserProfileBlock = ({ id }: { id: string }) => {
           {!userData ? (
             <div>No User Data</div>
           ) : (
-            <div className="profile-box flex flex-col items-start justify-start p-10 bg-white rounded-xl w-96">
+            <div className="profile-box flex flex-col items-start justify-start p-10 bg-white rounded-xl sm:w-[650px] w-[350px] md:w-[400px]">
               <div className="name-status flex flex-row gap-1 items-center">
                 <h1 className="text-lg font-semibold text-cyan-700">
                   {userData.name}

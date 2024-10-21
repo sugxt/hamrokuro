@@ -1,7 +1,6 @@
 import { GuffadiGuffType } from "@/model/guffadi.model";
 import { usePostStore } from "@/store/usePostStore";
 import { pb, pbErrorMessage } from "@/utils/pocketbase";
-import { RecordModel } from "pocketbase";
 
 export default async function GuffadiGuffServices(
   id: string

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page({ params }: { params: { id: string } }) {
   return (
-    <div className="flex flex-col items-center pt-10 w-full justify-center gap-10">
+    <div className="flex flex-col pt-28 md:pt-10 items-center w-full justify-center gap-10">
       <UserProfileBlock id={params.id} />
       <GuffadiGuffs id={params.id}/>
     </div>

@@ -9,12 +9,7 @@ import { usePostStore } from "@/store/usePostStore";
 const CreatePostCard = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { fetchPostData } = usePostStore();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    resetField,
-  } = useForm<postDataType>();
+  const { register, handleSubmit, resetField } = useForm<postDataType>();
 
   async function onSubmit(data: postDataType) {
     setIsLoading(true);
