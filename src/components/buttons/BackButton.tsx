@@ -7,7 +7,7 @@ const BackButton = () => {
   const router = useRouter();
   return (
     <button
-    className=" flex justify-center w-10 h-10 items-center rounded-full hover:bg-neutral-100"
+    className=" flex justify-center w-10 h-10 items-center rounded-full transition ease-in-out delay-75 focus:bg-neutral-200 hover:bg-neutral-100"
       onClick={() => {
         router.back();
       }}

@@ -17,7 +17,7 @@ const ProfileBlock = () => {
   return (
     <div>
       {isLoading ? (
-        <div className="flex flex-col items-center w-96">Loading...</div>
+        <div className="flex flex-col w-full gap-6 justify-center items-center">Loading...</div>
       ) : (
         <div className="flex flex-col w-full gap-6 justify-center items-center">
           {postData &&
