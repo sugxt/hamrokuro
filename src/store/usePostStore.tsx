@@ -3,6 +3,7 @@ import { RecordModel } from "pocketbase";
 import { create } from "zustand";
 import postListServices from "@/services/guffServices/postListServices";
 import commentViewServices from "@/services/gaffServices/commentViewServices";
+import { pbErrorMessage } from "@/utils/pocketbase";
 
 interface PostState {
   postData: RecordModel[] | null;
@@ -42,7 +43,7 @@ export const useCommentStore = create<CommentState>((set) => ({
       set({ postData: data.data });
       set({ isCommentLoading: false });
     } catch (error) {
-      console.log("Something went wrong");
+      console.log(pbErrorMessage(error).message);
     }
   },
   setIsCommentLoading: (state) => {
