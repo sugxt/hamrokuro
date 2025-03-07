@@ -25,6 +25,7 @@ const CreateGaffCard = ({ guffId }: { guffId: string }) => {
 
   return (
     <div className="flex flex-col p-4 text-sm sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-lg gap-2">
+      <h1 className="">Enter a reply</h1>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <input
           className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
