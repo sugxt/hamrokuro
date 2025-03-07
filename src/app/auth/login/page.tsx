@@ -31,7 +31,7 @@ export default function Login() {
   return (
     <main className="w-full flex min-h-screen flex-col items-center justify-center p-24">
       <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} method="POST" className="flex flex-col gap-2">
           <input
             required
             type="text"

@@ -15,7 +15,8 @@ const GaffBlock = ({ gaff_id }: { gaff_id: string }) => {
   }, [fetchPostData]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col p-4 bg-white sm:w-[650px] w-[350px] md:w-[400px] gap-4 items-start rounded-xl h-auto">
+      <h1 className="font-medium text-xl">Replies</h1>
       {postData &&
         postData.map((gaff) => <GaffCard key={gaff.id} data={gaff} />)}
     </div>
