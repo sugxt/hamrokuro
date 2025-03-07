@@ -1,38 +1,63 @@
-import { usePostStore } from "@/store/usePostStore";
+// services/QueueServices/likeQueueServices.ts
+import { usePostStore, useSinglePostStore } from "@/store/usePostStore";
 import { RecordModel } from "pocketbase";
 import { postLikeServices } from "../guffServices/postLikeServices";
 
-export async function postLikeQueue(post_id: string, user_id: string) {
-  const postUpdate = usePostStore.getState().setPostData;
-  const currentPostState = usePostStore.getState().postData;
-  let curr = 0;
-  let originalPost: RecordModel;
+export async function postLikeQueue(
+  post_id: string,
+  user_id: string,
+) {
+  const { postData: multiPostData, setPostData: setMultiPostData } =
+    usePostStore.getState();
+  const { postData: singlePostData, setPostData: setSinglePostData } =
+    useSinglePostStore.getState();
 
-  const updatedPosts = currentPostState?.map((post, key) => {
-    if (post.id === post_id) {
-      curr = key;
-      originalPost = { ...post }; // Store the original state of the post
-      return {
-        ...post,
-        isLiked: true,
-        likes: post.likes + 1,
-      };
+  // Handle single post case
+  if (singlePostData && singlePostData.id == post_id) {
+    const originalPost = { ...singlePostData };
+    const updatedPost = {
+      ...singlePostData,
+      isLiked: true,
+      likes: singlePostData.likes + 1,
+    };
+    setSinglePostData(updatedPost);
+
+    const response = await postLikeServices(post_id, user_id);
+    if (!response.isSuccess) {
+      setSinglePostData(originalPost);
     }
-    return post;
-  });
+    return;
+  }
 
-  postUpdate(updatedPosts);
+  // Handle multiple posts case
+  if (multiPostData) {
+    let originalPost: RecordModel | null = null;
+    let updatedIndex: number | null = null;
 
-  const response = await postLikeServices(post_id, user_id);
-  if (!response.isSuccess) {
-    // Revert the post back to its original state
-    const revertedPosts = updatedPosts?.map((post, key) => {
-      if (key === curr) {
-        return originalPost;
+    const updatedPosts = multiPostData.map((post, index) => {
+      if (post.id === post_id && !post.isLiked) {
+        originalPost = { ...post };
+        updatedIndex = index;
+        return {
+          ...post,
+          isLiked: true,
+          likes: post.likes + 1,
+        };
       }
       return post;
     });
 
-    postUpdate(revertedPosts);
+    if (updatedIndex !== null && originalPost !== null) {
+      setMultiPostData(updatedPosts);
+
+      const response = await postLikeServices(post_id, user_id);
+      if (!response.isSuccess) {
+        // Ensure revertedPosts is always RecordModel[]
+        const revertedPosts: RecordModel[] = updatedPosts.map((post, index) =>
+          index === updatedIndex ? originalPost! : post
+        );
+        setMultiPostData(revertedPosts);
+      }
+    }
   }
 }
