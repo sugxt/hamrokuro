@@ -4,7 +4,7 @@ import React from "react";
 const LikeButton = ({
   post,
   user,
-  isLiked,
+  isLiked
 }: {
   post: string;
   user: string;
