@@ -29,40 +29,58 @@ export default function SignUp() {
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <form className="flex flex-col gap-4" method="POST" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="username"
-          required
-          {...register("username")}
-        />
-        <input
-          type="email"
-          placeholder="email"
-          required
-          {...register("email")}
-        />
-
-        <input
-          type="password"
-          placeholder="password"
-          required
-          {...register("password")}
-        />
-        <input
-          type="password"
-          placeholder="confirm password"
-          required
-          {...register("passwordConfirm")}
-        />
-        <input
-          type="text"
-          placeholder="Full Name"
-          required
-          {...register("name")}
-        />
-        <ButtonLoader isLoading={isLoading} content="Sign Up" />
-      </form>
+      <div className="flex flex-col gap-2">
+        <form
+          className="flex flex-col gap-4"
+          method="POST"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <input
+            className="rounded-lg p-2"
+            type="text"
+            placeholder="username"
+            required
+            {...register("username")}
+          />
+          <input
+            className="rounded-lg p-2"
+            type="email"
+            placeholder="email"
+            required
+            {...register("email")}
+          />
+          <input
+            className="rounded-lg p-2"
+            type="text"
+            placeholder="Full Name"
+            required
+            {...register("name")}
+          />
+          <input
+            className="rounded-lg p-2"
+            type="password"
+            placeholder="password"
+            required
+            {...register("password")}
+          />
+          <input
+            className="rounded-lg p-2"
+            type="password"
+            placeholder="confirm password"
+            required
+            {...register("passwordConfirm")}
+          />
+          <ButtonLoader isLoading={isLoading} content="Sign Up" />
+        </form>
+        <div>
+          <p className="text-sm">
+            Already have an account?{" "}
+            <a href="/auth/login" className="text-cyan-600">
+              Login
+            </a>
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

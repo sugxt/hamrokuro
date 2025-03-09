@@ -1,8 +1,6 @@
 "use client";
 import PostCard from "@/components/cards/PostCard";
-import postViewServices from "@/services/guffServices/postViewServices";
 import { useSinglePostStore } from "@/store/usePostStore";
-import { RecordModel } from "pocketbase";
 import React, { useEffect, useState } from "react";
 
 const GuffBlock = ({ guff_id }: { guff_id: string }) => {

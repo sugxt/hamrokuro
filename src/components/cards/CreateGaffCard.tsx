@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import ButtonLoader from "../buttons/ButtonLoader";
 import { useForm } from "react-hook-form";
 import { postCommentType, PostResponse } from "@/model/posts.model";
@@ -26,8 +26,8 @@ const CreateGaffCard = ({ guffId }: { guffId: string }) => {
   return (
     <div className="flex flex-col p-4 text-sm sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-lg gap-2">
       <h1 className="">Enter a reply</h1>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <input
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)} method="POST">
+        <textarea
           className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
           placeholder="Type your gaff"
           autoComplete="off"
