@@ -29,7 +29,7 @@ const CreatePostCard = () => {
     <div className="flex flex-col p-6 sm:w-[650px] w-[350px] md:w-[400px] bg-white rounded-lg gap-2">
       <h1 className="text-lg text-cyan-900">Guff hanne thau</h1>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <input
+        <textarea
           className="appearance-none rounded-lg border-2 border-neutral-300 p-4"
           placeholder="Type your guff"
           {...register("guff")}

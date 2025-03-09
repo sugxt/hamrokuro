@@ -21,7 +21,7 @@ export default function Login() {
     const resData: AuthResponse = await loginServices(data);
     if (resData.isSuccess) {
       router.push("/home");
-      console.log("Success",resData.message)
+      console.log("Success", resData.message);
     } else {
       setIsLoading(false);
       console.log("Error", resData.message);
@@ -30,15 +30,21 @@ export default function Login() {
 
   return (
     <main className="w-full flex min-h-screen flex-col items-center justify-center p-24">
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)} method="POST" className="flex flex-col gap-2">
+      <div className="flex flex-col items-center gap-2">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          method="POST"
+          className="flex flex-col gap-3"
+        >
           <input
+            className="rounded-lg p-2"
             required
             type="text"
             placeholder="username or email"
             {...register("identity")}
           />
           <input
+            className="rounded-lg p-2"
             required
             type="password"
             placeholder="password"
@@ -46,6 +52,12 @@ export default function Login() {
           />
           <ButtonLoader isLoading={isLoading} content="Login" />
         </form>
+        <p className="text-sm">
+          Don't have an account?{" "}
+          <a href="/auth/signup" className="text-cyan-600">
+            Sign Up
+          </a>
+        </p>
       </div>
     </main>
   );
