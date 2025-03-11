@@ -30,6 +30,7 @@ export default function SignUp() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-black text-cyan-600">HAMROKURO</h1>
         <form
           className="flex flex-col gap-4"
           method="POST"
