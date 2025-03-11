@@ -31,6 +31,7 @@ export default function Login() {
   return (
     <main className="w-full flex min-h-screen flex-col items-center justify-center p-24">
       <div className="flex flex-col items-center gap-2">
+        <h1 className="text-3xl font-black text-cyan-600">HAMROKURO</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           method="POST"
