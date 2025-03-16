@@ -6,6 +6,7 @@ import Link from "next/link";
 import { IoHome } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import LogoutButton from "../buttons/LogoutButton";
+import { useNavigation } from "@/utils/navigation";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -13,8 +14,9 @@ const poppins = Poppins({
   style: ["normal", "italic"],
 });
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const pathname = usePathname();
+  const { userName, isLoading } = useNavigation();
 
   return (
     <div
@@ -32,16 +34,22 @@ const Navbar = () => {
         >
           <IoHome />
         </Link>
-        <Link
-          className={`link ${
-            pathname == "/profile"
-              ? "flex flex-row gap-2 items-center justify-center text-cyan-700 font-bold text-xl"
-              : "flex flex-row gap-2 items-center justify-center font-medium text-black text-xl hover:text-cyan-900"
-          }`}
-          href={"/profile"}
-        >
-          <CgProfile />
-        </Link>
+
+        {/* Show placeholder during loading or the actual link when data is available */}
+        {isLoading ? (
+          <div className="w-6 h-6 animate-pulse bg-gray-200 rounded-full"></div>
+        ) : (
+          userName && <Link
+            className={`link ${
+              pathname == `/guffadi/${userName}`
+                ? "flex flex-row gap-2 items-center justify-center text-cyan-700 font-bold text-xl"
+                : "flex flex-row gap-2 items-center justify-center font-medium text-black text-xl hover:text-cyan-900"
+            }`}
+            href={`/guffadi/${userName}`}
+          >
+            <CgProfile />
+          </Link>
+        )}
         <LogoutButton />
       </div>
     </div>
